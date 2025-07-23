@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Textile Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3a4e58;
+            --secondary: #4a5c65;
+            --light-bg: #f8f7f4;
+            --medium-light: #d8d7d3;
+            --medium: #b8b8b6;
+            --lightest: #f5f5f3;
+            --accent1: #c8b6a6;
+            --accent2: #a4907c;
+            --dark: #2a363d;
+            --primmary: #44535e;
+            --white: #ffffff;
+            --section-bg: rgba(249, 245, 242, 0.95);
+            --text-color: #333;
+            --text-light: #666;
+            --gold: #b89f7b;
+            --nav: #44535e;
+            --nav-active-bg: rgba(255,255,255,0.15);
+            --highlight: #3b444c;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 1rem 2rem;
+            background-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--highlight);
+        }
+
+        nav a.active, nav a:focus {
+            color: var(--highlight);
+        }
+
+        nav a.active:after, nav a:focus:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--highlight);
+            animation: underline 0.3s ease forwards;
+        }
+
+        @keyframes underline {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .logo {
+            height: 120px;
+            width: auto;
+            margin-right: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            flex: 1;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin: 40px 0 30px;
+            color: var(--primary);
+            position: relative;
+            padding: 0 15px;
+        }
+        
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            margin: 0 0 15px;
+            display: inline-block;
+            position: relative;
+            padding: 0 40px;
+            color: var(--dark);
+            letter-spacing: 0.5px;
+        }
+        
+        .header-description {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .header-title:before,
+        .header-title:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold);
+            transition: all 0.3s ease;
+        }
+        
+        .header-title:before {
+            left: -50px;
+            transform: translateY(-50%);
+        }
+        
+        .header-title:after {
+            right: -50px;
+            transform: translateY(-50%);
+        }
+        
+        .page-header:hover .header-title:before {
+            left: -55px;
+            width: 65px;
+        }
+        
+        .page-header:hover .header-title:after {
+            right: -55px;
+            width: 65px;
+        }
+        
+        .back-to-categories, 
+        .back-to-products {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+        
+        .back-to-categories:hover,
+        .back-to-products:hover {
+            background-color: rgba(66, 82, 96, 0.1);
+            color: var(--accent2);
+        }
+        
+        .back-to-categories:before,
+        .back-to-products:before {
+            content: "←";
+            margin-right: 5px;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        
+        .category-card {
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 100%;
+            margin: 0 auto;
+            max-width: 350px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-image {
+            height: 220px;
+            background-color: var(--medium-light);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            width: 100%;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .category-card:hover .category-image {
+            transform: scale(1.03);
+        }
+        
+        .category-name {
+            position: absolute;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .category-card:hover .category-name,
+        .category-card.touched .category-name {
+            opacity: 1;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+        
+        .category-card:hover .category-overlay {
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .products-container {
+            display: none;
+            margin: 40px 0;
+            padding: 0 15px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 10px;
+            width: 100%;
+            padding-bottom: 40px;
+        }
+        
+        html {
+            overflow-y: scroll;
+        }
+        
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .product-card {
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            height: 100%;
+            margin: 0 auto;
+            max-width: 220px;
+            width: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+        
+        .product-image {
+            height: 160px;
+            background-color: var(--medium);
+            background-size: cover;
+            background-position: center;
+            transition: all 0.4s ease;
+            width: 100%;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.02);
+        }
+        
+        .product-name {
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            transition: color 0.3s ease;
+        }
+        
+        .product-card:hover .product-name {
+            color: var(--accent2);
+        }
+        
+        .product-detail {
+            display: none;
+            margin-top: 20px;
+            padding: 0 15px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+        
+        .detail-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .detail-image {
+            height: 220px;
+            background-color: var(--medium-light);
+            background-size: cover;
+            background-position: center;
+            border-radius: 6px;
+            transition: all 0.4s ease;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .detail-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .detail-title.with-line:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .texture-pattern {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v100H0z" fill="none"/><path d="M20 20h10v10H20zM70 20h10v10H70zM20 70h10v10H20zM70 70h10v10H70z" fill="rgba(184, 159, 123, 0.1)"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent1);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent2);
+        }
+        
+        @media (max-width: 900px) {
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-title:before,
+            .header-title:after {
+                width: 30px;
+            }
+            
+            .header-title:before {
+                left: -30px;
+            }
+            
+            .header-title:after {
+                right: -30px;
+            }
+            
+            .page-header:hover .header-title:before {
+                left: -35px;
+                width: 35px;
+            }
+            
+            .page-header:hover .header-title:after {
+                right: -35px;
+                width: 35px;
+            }
+            
+            .back-to-categories, 
+            .back-to-products {
+                position: relative;
+                display: block;
+                margin: 10px auto;
+                top: auto;
+                left: auto;
+                transform: none;
+                text-align: center;
+                width: fit-content;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .category-image {
+                height: 180px;
+            }
+            
+            .product-image {
+                height: 140px;
+            }
+            
+            .detail-image {
+                height: 200px;
+            }
+            
+            .page-header {
+                margin: 30px 0 20px;
+            }
+            
+            .products-container {
+                max-height: calc(100vh - 180px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+            
+            .category-image {
+                height: 150px;
+            }
+            
+            .product-image {
+                height: 120px;
+            }
+            
+            .product-name {
+                padding: 10px 5px;
+                font-size: 0.85rem;
+            }
+            
+            .detail-images {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .detail-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title {
+                padding: 0 20px;
+                font-size: 1.5rem;
+            }
+            
+            .header-title:before,
+            .header-title:after {
+                display: none;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-card,
+            .product-card {
+                max-width: 100%;
+            }
+            
+            .detail-image {
+                height: 180px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .header-description {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            .products-container {
+                max-height: calc(100vh - 160px);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .category-image {
+                height: 140px;
+            }
+            
+            .product-image {
+                height: 100px;
+            }
+            
+            .product-name {
+                font-size: 0.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: translate(-50%, -50%) scale(0.9)}
+            to {transform: translate(-50%, -50%) scale(1)}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+            }
+            
+            .close-modal {
+                top: 15px;
+                right: 25px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="logo.png" alt="Company Logo" class="logo">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="sustainability.html">Sustainability</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <div class="texture-pattern"></div>
+    <div class="container">
+        <div class="page-header">
+            <button class="back-to-categories" id="backToCategories">Back to Categories</button>
+            <h1 class="header-title" id="headerTitle">Our Signature Collection</h1>
+            <button class="back-to-products" id="backToProducts">Back to Products</button>
+            <p class="header-description" id="headerDescription">
+                Discover our exquisite range of handcrafted textiles, where timeless tradition meets contemporary design. 
+                Each piece is carefully crafted using sustainable materials and artisanal techniques.
+            </p>
+        </div>
+        
+        <div class="categories-grid" id="categoriesGrid">
+            
+            <div class="category-card" data-category="dining">
+                <div class="category-overlay"></div>
+                <div class="category-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/dinning.jpeg')">
+                    <div class="category-name">Dining</div>
+                </div>
+            </div>
+            <div class="category-card" data-category="kitchen">
+                <div class="category-overlay"></div>
+                <div class="category-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/kitchen.jpeg')">
+                    <div class="category-name">Kitchen</div>
+                </div>
+            </div>
+            <div class="category-card" data-category="bedding">
+                <div class="category-overlay"></div>
+                <div class="category-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/bedding.jpeg')">
+                    <div class="category-name">Bedding</div>
+                </div>
+            </div>
+            <div class="category-card" data-category="garden">
+                <div class="category-overlay"></div>
+                <div class="category-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/garden.jpeg')">
+                    <div class="category-name">Garden</div>
+                </div>
+            </div>
+            <div class="category-card" data-category="kids">
+                <div class="category-overlay"></div>
+                <div class="category-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/kids.jpeg')">
+                    <div class="category-name">Kids</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="products-container" id="diningProducts">
+            <div class="products-grid">
+                <div class="product-card" data-product="table-cloth">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Table Cloth 1.jpg')"></div>
+                    <div class="product-name">Table Cloth</div>
+                </div>
+                <div class="product-card" data-product="table-cloth">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Table Coth 2.jpg')"></div>
+                    <div class="product-name">Table Cloth</div>
+                </div>
+                <div class="product-card" data-product="table-runner">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Table Runner 1.jpg')"></div>
+                    <div class="product-name">Table Runner</div>
+                </div>
+                <div class="product-card" data-product="table-runner">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Table Runner 2.jpg')"></div>
+                    <div class="product-name">Table Runner</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="products-container" id="kitchenProducts">
+            <div class="products-grid">
+                <div class="product-card" data-product="kitchen-towels">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Kitchen Towel 1.jpg')"></div>
+                    <div class="product-name">Kitchen Towels</div>
+                </div>
+                <div class="product-card" data-product="kitchen-towels">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Kitchen Towel 2.jpg')"></div>
+                    <div class="product-name">Kitchen Towels</div>
+                </div>
+                <div class="product-card" data-product="kitchen-towels">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Kitchen Towel 3.jpg')"></div>
+                    <div class="product-name">Kitchen Towels</div>
+                </div>
+                <div class="product-card" data-product="cotton-bags">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Cloth Bag 1.jpg')"></div>
+                    <div class="product-name">Cotton Bags</div>
+                </div>
+                <div class="product-card" data-product="cotton-bags">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Cloth Bag 2.jpg')"></div>
+                    <div class="product-name">Cotton Bags</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="products-container" id="beddingProducts">
+            <div class="products-grid">
+                <div class="product-card" data-product="duvet">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Bedding 1.jpg')"></div>
+                    <div class="product-name">sheeets</div>
+                </div>
+                <div class="product-card" data-product="sheet-sets">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Bedding 3.jpg')"></div>
+                    <div class="product-name">sheeets</div>
+                </div>
+                <div class="product-card" data-product="pillow-case">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Bedding 4.jpg')"></div>
+                    <div class="product-name">sheeets</div>
+                </div>
+                <div class="product-card" data-product="pillow-case">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Bedding 5.jpg')"></div>
+                    <div class="product-name">sheeets</div>
+                </div>
+                <div class="product-card" data-product="pillow-case">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/Bedding 6.jpg')"></div>
+                    <div class="product-name">sheeets</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="products-container" id="gardenProducts">
+            <div class="products-grid">
+                <div class="product-card" data-product="cushions">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/outdoor-cushion1.jpg')"></div>
+                    <div class="product-name">Outdoor Cushions</div>
+                </div>
+                <div class="product-card" data-product="cushions">
+                    <div class="product-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('product-Imgaes/outdoor-cushion2.jpg')"></div>
+                    <div class="product-name">Outdoor Cushions</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="products-container" id="kidsProducts">
+            <div class="products-grid">
+                <div class="product-card" data-product="swaddle">
+                    <div class="product-image" style="background-image: url('product-Imgaes/Swaddle 4.jpg')"></div>
+                    <div class="product-name">Swaddle Blanket</div>
+                </div>
+                <div class="product-card" data-product="swaddle">
+                    <div class="product-image" style="background-image: url('product-Imgaes/Swaddle 5.jpg')"></div>
+                    <div class="product-name">Swaddle Blanket</div>
+                </div>
+                <div class="product-card" data-product="swaddle">
+                    <div class="product-image" style="background-image: url('product-Imgaes/Swaddle 6.jpg')"></div>
+                    <div class="product-name">Swaddle Blanket</div>
+                </div>
+                <div class="product-card" data-product="blanket">
+                    <div class="product-image" style="background-image: url('product-Imgaes/Kids Blanket 1.jpg')"></div>
+                    <div class="product-name">Nursery Blanket</div>
+                </div>
+                <div class="product-card" data-product="blanket">
+                    <div class="product-image" style="background-image: url('product-Imgaes/Kids Blanket 2.jpg')"></div>
+                    <div class="product-name">Nursery Blanket</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const headerTitle = document.getElementById('headerTitle');
+            const headerDescription = document.getElementById('headerDescription');
+            const backToCategories = document.getElementById('backToCategories');
+            const backToProducts = document.getElementById('backToProducts');
+            const categoriesGrid = document.getElementById('categoriesGrid');
+            const allProductsContainers = document.querySelectorAll('.products-container');
+            const productDetail = document.getElementById('productDetail');
+            const detailTitle = document.getElementById('detailTitle');
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModal = document.querySelector('.close-modal');
+            
+            let currentCategory = '';
+            
+            const productTitles = {
+                'table-cloth': 'Table Cloth',
+                'oven-mitten': 'Oven Mitt',
+                'pot-holder': 'Pot Holder',
+                'place-mat': 'Place Mat',
+                'table-runner': 'Table Runner',
+                'chair-pad': 'Chair Pad',
+                'napkin': 'Napkin Set',
+                'kitchen-towels': 'Kitchen Towels',
+                'cotton-bags': 'Cotton Bags',
+                'cotton-pouch': 'Storage Pouch',
+                'apron': 'Chef\'s Apron',
+                'duvet': 'Duvet Cover',
+                'comforter': 'Comforter',
+                'sheet-sets': 'Sheet Sets',
+                'pillow-case': 'Pillow Case',
+                'pouf': 'Outdoor Pouf',
+                'cushions': 'Outdoor Cushions',
+                'sleepin-bag': 'Sleeping Bag',
+                'swaddle': 'Swaddle Blanket',
+                'blanket': 'Nursery Blanket',
+                'bibs': 'Bibs Set',
+                'cribsheet': 'Crib Sheet',
+                'hooded-towel': 'Hooded Towel',
+                'wash-cloth': 'Wash Cloth Set'
+            };
+
+            const categoryData = {
+                
+                'dining': {
+                    title: 'Dining Essentials',
+                    description: 'Transform your dining experience with our artisanal table linens.'
+                },
+                'kitchen': {
+                    title: 'Kitchen Textiles',
+                    description: 'Practical yet beautiful kitchen essentials made from natural materials.'
+                },
+                'bedding': {
+                    title: 'Bedroom Linens',
+                    description: 'Luxurious bedding designed for comfort and style.'
+                },
+                'garden': {
+                    title: 'Outdoor Textiles',
+                    description: 'Durable and stylish outdoor fabrics that withstand the elements.'
+                },
+                'kids': {
+                    title: 'Nursery & Kids',
+                    description: 'Gentle, safe textiles for your little ones.'
+                }
+            };
+
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    document.querySelectorAll('.category-card').forEach(c => {
+                        c.classList.remove('touched');
+                    });
+                    this.classList.add('touched');
+                });
+                
+                document.addEventListener('touchstart', function(e) {
+                    if (!card.contains(e.target)) {
+                        card.classList.remove('touched');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('touched');
+                });
+            });
+
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    currentCategory = this.getAttribute('data-category');
+                    
+                    categoriesGrid.style.display = 'none';
+                    allProductsContainers.forEach(container => container.style.display = 'none');
+                    document.getElementById(currentCategory + 'Products').style.display = 'block';
+                    
+                    headerTitle.textContent = categoryData[currentCategory].title;
+                    headerDescription.textContent = categoryData[currentCategory].description;
+                    
+                    backToCategories.style.display = 'block';
+                    backToProducts.style.display = 'none';
+                    productDetail.style.display = 'none';
+                    modal.style.display = 'none';
+                    
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('product-image') || 
+                        e.target.closest('.product-image')) {
+                        return;
+                    }
+                    
+                    const productId = this.getAttribute('data-product');
+                    
+                    categoriesGrid.style.display = 'none';
+                    allProductsContainers.forEach(container => container.style.display = 'none');
+                    productDetail.style.display = 'block';
+                    
+                    headerTitle.style.display = 'none';
+                    headerDescription.style.display = 'none';
+                    
+                    detailTitle.textContent = productTitles[productId] || 'Product Details';
+                    detailTitle.classList.add('with-line');
+                    
+                    const detailImages = document.getElementById('detailImages');
+                    const imageUrl = this.querySelector('.product-image').style.backgroundImage.match(/url\(["']?([^"']*)["']?\)/)[1];
+                    detailImages.innerHTML = `<div class="detail-image" style="background-image: url('${imageUrl}')"></div>`;
+                    
+                    backToCategories.style.display = 'none';
+                    backToProducts.style.display = 'block';
+                    
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            backToCategories.addEventListener('click', function() {
+                categoriesGrid.style.display = 'grid';
+                allProductsContainers.forEach(container => container.style.display = 'none');
+                productDetail.style.display = 'none';
+                modal.style.display = 'none';
+                
+                headerTitle.style.display = 'inline-block';
+                headerDescription.style.display = 'block';
+                
+                headerTitle.textContent = 'Our Signature Collection';
+                headerDescription.textContent = 'Discover our exquisite range of handcrafted textiles, where timeless tradition meets contemporary design. Each piece is carefully crafted using sustainable materials and artisanal techniques.';
+                
+                headerTitle.classList.remove('with-line');
+                headerTitle.style.padding = '0 40px';
+                
+                backToCategories.style.display = 'none';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            backToProducts.addEventListener('click', function() {
+                categoriesGrid.style.display = 'none';
+                allProductsContainers.forEach(container => container.style.display = 'none');
+                document.getElementById(currentCategory + 'Products').style.display = 'block';
+                productDetail.style.display = 'none';
+                modal.style.display = 'none';
+                
+                headerTitle.style.display = 'inline-block';
+                headerDescription.style.display = 'block';
+                
+                headerTitle.textContent = categoryData[currentCategory].title;
+                headerDescription.textContent = categoryData[currentCategory].description;
+                
+                headerTitle.classList.remove('with-line');
+                headerTitle.style.padding = '0 40px';
+                
+                backToCategories.style.display = 'block';
+                backToProducts.style.display = 'none';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('product-image') || 
+                    e.target.closest('.product-image')) {
+                    
+                    const clickedImage = e.target.classList.contains('product-image') ? 
+                        e.target : e.target.closest('.product-image');
+                    
+                    const bgImage = clickedImage.style.backgroundImage;
+                    const imageUrlMatch = bgImage.match(/url\(["']?([^"']*)["']?\)/);
+                    const imageUrl = imageUrlMatch ? imageUrlMatch[1] : '';
+                    
+                    if (imageUrl) {
+                        modalImg.src = imageUrl;
+                        modal.style.display = 'block';
+                    } else {
+                        console.error('No valid image URL found in background-image:', bgImage);
+                    }
+                }
+            });
+
+            closeModal.onclick = function() {
+                modal.style.display = 'none';
+            };
+
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                }
+            });
+
+            function handleResponsiveBackButtons() {
+                if (window.innerWidth <= 768) {
+                    backToCategories.style.position = 'relative';
+                    backToCategories.style.display = backToCategories.style.display === 'block' ? 'block' : 'none';
+                    backToCategories.style.margin = '10px auto';
+                    backToCategories.style.top = 'auto';
+                    backToCategories.style.left = 'auto';
+                    backToCategories.style.transform = 'none';
+                    
+                    backToProducts.style.position = 'relative';
+                    backToProducts.style.display = backToProducts.style.display === 'block' ? 'block' : 'none';
+                    backToProducts.style.margin = '10px auto';
+                    backToProducts.style.top = 'auto';
+                    backToProducts.style.left = 'auto';
+                    backToProducts.style.transform = 'none';
+                } else {
+                    backToCategories.style.position = 'absolute';
+                    backToCategories.style.display = backToCategories.style.display === 'block' ? 'block' : 'none';
+                    backToCategories.style.margin = '0';
+                    backToCategories.style.top = '50%';
+                    backToCategories.style.left = '0';
+                    backToCategories.style.transform = 'translateY(-50%)';
+                    
+                    backToProducts.style.position = 'absolute';
+                    backToProducts.style.display = backToProducts.style.display === 'block' ? 'block' : 'none';
+                    backToProducts.style.margin = '0';
+                    backToProducts.style.top = '50%';
+                    backToProducts.style.left = '0';
+                    backToProducts.style.transform = 'translateY(-50%)';
+                }
+            }
+
+            handleResponsiveBackButtons();
+            window.addEventListener('resize', handleResponsiveBackButtons);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Artisan Textile Collections</title>
+  <style>
+    :root {
+      --primary: #2d3946;
+      --accent: #dad5f8;
+      --background: #f4f4f2;
+      --white: #ffffff;
+      --text-dark: #1f2937;
+      --text-medium: #4b5563;
+      --nav-bg: #44535e;
+      --text-primary: #425260;
+      --highlight: #3b444c;
+      --bg-light: #e6e6e4;
+      --tile-bg: #ebebe9;
+      --neutral-light: #b8b8b6;
+      --muted-light: #dad6cb;
+      --accent-light: #d6d6d6;
+      --hero-bg: #f5f0ec;
+      --hero-text: #ffffff;
+      --section-bg: rgba(249, 245, 242, 0.7);
+      --section-accent: #3b444c;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.05); 
+      --card-shadow-hover: rgba(0, 0, 0, 0.1);
+      --button-bg: #425260;
+      --button-hover: #e6e6e4;
+      --grid-pattern: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%23dcd2cc" stroke-width="0.5"/></svg>');
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      color: var(--text-dark);
+      line-height: 1.6;
+      background: var(--section-bg);
+      background-image: var(--grid-pattern), linear-gradient(to bottom, var(--section-bg), var(--section-bg));
+      background-size: 50px 50px, auto;
+      background-attachment: fixed;
+      background-repeat: repeat;
+    }
+
+   nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 2rem 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--highlight);
+    }
+
+    nav a.active, nav a:focus {
+      color: var(--highlight);
+    }
+
+    nav a.active:after, nav a:focus:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--highlight);
+      animation: underline 0.3s ease forwards;
+    }
+
+    @keyframes underline {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    
+    .logo {
+      height: 120px;
+      width: auto;
+      margin-right: 2rem;
+    }
+
+    .hero-section {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      color: var(--section-accent);
+      margin-bottom: 1rem;
+      white-space: nowrap;
+    }
+
+    .hero-text p {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: var(--text-medium);
+      max-width: 90%;
+    }
+
+    .hero-image-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image-main {
+      width: 70%;
+      max-width: 500px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 15px solid var(--white);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 3;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image-main:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-image-secondary {
+      position: absolute;
+      width: 45%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 10px solid var(--white);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .hero-image-1 {
+      top: 10%;
+      left: 5%;
+      transform: rotate(-8deg);
+    }
+
+    .hero-image-2 {
+      bottom: 10%;
+      right: 5%;
+      transform: rotate(8deg);
+    }
+
+    .hero-image-secondary:hover {
+      z-index: 4;
+      transform: scale(1.05) rotate(0deg);
+    }
+
+    .hero-pattern {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.05;
+      background-image: var(--grid-pattern);
+      background-size: 50px 50px;
+      z-index: 0;
+    }
+
+    /* Responsive Fixes */
+    @media (max-width: 992px) {
+      .hero-section {
+        min-height: 70vh;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        white-space: normal;
+      }
+
+      .hero-text p {
+        margin: 0 auto 1.5rem;
+        max-width: 100%;
+      }
+
+      .hero-image-container {
+        order: -1;
+        min-height: 400px;
+      }
+
+      .hero-image-main {
+        width: 60%;
+        max-width: 400px;
+      }
+
+      .hero-image-secondary {
+        width: 35%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+        gap: 1rem;
+      }
+      
+      .logo {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-image-main {
+        width: 70%;
+        border-width: 8px;
+      }
+
+      .hero-image-secondary {
+        width: 30%;
+      }
+      
+      nav {
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        gap: 0.5rem;
+      }
+      
+      nav a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* About page content */
+    header {
+      background: linear-gradient(to right, #d8d8d6, #c9c8c5);
+      padding: 2rem 1rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--highlight);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: var(--text-primary);
+      font-size: 1.125rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--tile-bg);
+      padding: 1rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 40px;
+      margin-bottom: 1rem;
+    }
+
+    .section-wrapper {
+      background-color: var(--section-bg);
+      background-image: none;
+      padding: 3rem 1rem;
+    }
+
+    .factory-section {
+      background-color: transparent;
+      background-image: none !important;
+      padding: 0;
+    }
+
+    .split-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      justify-content: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .split-text {
+      flex: 1 1 400px;
+      text-align: center;
+    }
+
+    .icon-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--white);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+    }
+    
+    .established {
+      font-weight: bold;
+      color: var(--highlight);
+      margin-top: 1rem;
+      display: block;
+    }
+
+    /* Enhanced Slideshow styles */
+    .slideshow-container {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto;
+      flex: 1 1 500px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .mySlides {
+      position: relative;
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .mySlides.active img {
+      transform: scale(1.05);
+    }
+
+    /* Next & previous buttons */
+    .slideshow-container .prev, 
+    .slideshow-container .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: 50px;
+      height: 50px;
+      padding: 16px;
+      margin-top: -25px;
+      color: var(--highlight);
+      font-weight: bold;
+      font-size: 24px;
+      transition: 0.3s ease;
+      border-radius: 50%;
+      user-select: none;
+      background-color: rgba(255,255,255,0.9);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .slideshow-container .next {
+      right: 20px;
+    }
+
+    .slideshow-container .prev {
+      left: 20px;
+    }
+
+    .slideshow-container .prev:hover, 
+    .slideshow-container .next:hover {
+      background-color: var(--highlight);
+      color: white;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot-container {
+      text-align: center;
+      padding: 20px 0 0;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: var(--neutral-light);
+      border-radius: 50%;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .slide-in-right {
+      animation: slideInRight 1s ease;
+    }
+
+    .slide-in-left {
+      animation: slideInLeft 1s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="logo.png" alt="Company Logo" class="logo">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="products.html">Products</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="sustainability.html">Sustainability</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Our Textile Heritage</h1>
+        <p>Since 1997 in Karur, we've been crafting premium textiles that blend traditional craftsmanship with modern innovation. Our journey reflects our commitment to quality, sustainability, and timeless design.</p>
+        
+      </div>
+      <div class="hero-image-container">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="hero-image-main" alt="Main Textile Image" />
+        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="hero-image-secondary hero-image-1" alt="Secondary 1" />
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="hero-image-secondary hero-image-2" alt="Secondary 2" />
+      </div>
+    </div>
+  </section>
+
+  <header>
+    <section id="commitment">
+      <h2>Our Commitment</h2>
+      <p>For over 25 years since our founding , we are driven by a passion to produce exceptional textiles while staying true to our values of responsibility, innovation, and integrity.</p>
+    </section>
+
+    <section class="cards">
+      <div class="card"><img src="aboutuspage-Images/commitment-Images/consistent-product.png" alt=""><h3>Consistent Product Quality</h3></div>
+      <div class="card"><img src="aboutuspage-Images/commitment-Images/competitive-pricing.png" alt=""><h3>Competitive Pricing</h3></div>
+      <div class="card"><img src="aboutuspage-Images/commitment-Images/Reliable-delivery.png" alt=""><h3>Reliable Delivery</h3></div>
+      <div class="card"><img src="aboutuspage-Images/commitment-Images/flexible,custom-design.png" alt=""><h3>Flexible, Custom Designs</h3></div>
+    </section>
+  </header>
+
+  <!-- Wrapped factory section with slideshow -->
+  <div class="section-wrapper">
+    <section class="factory-section" id="factory">
+      <div class="split-section">
+        <div class="slideshow-container">
+          <!-- Slideshow images -->
+          <div class="mySlides fade">
+            <img src="aboutuspage-Images/factory/1.jpg" alt="Factory Exterior">
+          </div>
+          <div class="mySlides fade">
+            <img src="aboutuspage-Images/factory/2.jpg" alt="Production Area">
+          </div>
+          <div class="mySlides fade">
+            <img src="aboutuspage-Images/factory/3.jpg" alt="Quality Control">
+          </div>
+          <div class="mySlides fade">
+            <img src="aboutuspage-Images/factory/4.jpg" alt="Machinery">
+          </div>
+          
+          <!-- Navigation arrows -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        
+        <div class="split-text">
+          <h2>Our Factory</h2>
+          <p>Our state-of-the-art manufacturing facility is equipped with advanced technology and operated by a team of skilled professionals. We adhere to the highest standards of quality and efficiency to produce premium textiles that meet global expectations.</p>
+          
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <header>
+    <section>
+      <div class="icon-circle">
+        <img src="aboutuspage-Images/sustainability.png" alt="Sustainability Icon" style="width: 32px; height: 32px;">
+      </div>
+      <h2>Ethical & Sustainable Manufacturing</h2>
+      <p>Every product is crafted with care, using responsibly sourced materials and environmentally mindful processes, reflecting our deep commitment to ethical and sustainable manufacturing.</p>
+    </section>
+  </header>
+
+  <script>
+    let slideIndex = 1;
+    let slideDirection = 'right';
+    showSlides(slideIndex);
+    
+    // Next/previous controls
+    function plusSlides(n) {
+      slideDirection = n > 0 ? 'right' : 'left';
+      showSlides(slideIndex += n);
+    }
+    
+    // Thumbnail image controls
+    function currentSlide(n) {
+      slideDirection = n > slideIndex ? 'right' : 'left';
+      slideIndex = n;
+      showSlides(slideIndex);
+    }
+    
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      
+      if (n > slides.length) {slideIndex = 1} 
+      if (n < 1) {slideIndex = slides.length}
+      
+      // Hide all slides first
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        slides[i].className = slides[i].className.replace(" active", "");
+        slides[i].className = slides[i].className.replace(" slide-in-right", "");
+        slides[i].className = slides[i].className.replace(" slide-in-left", "");
+      }
+      
+      // Update dots
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      
+      // Show current slide with animation
+      slides[slideIndex-1].style.display = "block";
+      slides[slideIndex-1].className += " active";
+      
+      // Add appropriate animation class based on direction
+      if (slideDirection === 'right') {
+        slides[slideIndex-1].className += " slide-in-right";
+      } else {
+        slides[slideIndex-1].className += " slide-in-left";
+      }
+      
+      dots[slideIndex-1].className += " active";
+    }
+    
+    // Auto-advance slides every 5 seconds
+    let slideInterval = setInterval(function() {
+      plusSlides(1);
+    }, 5000);
+    
+    // Pause slideshow when hovering
+    const slideshowContainer = document.querySelector('.slideshow-container');
+    slideshowContainer.addEventListener('mouseenter', () => {
+      clearInterval(slideInterval);
+      // Add zoom effect to current slide
+      const activeSlide = document.querySelector('.mySlides.active');
+      if (activeSlide) {
+        activeSlide.querySelector('img').style.transform = 'scale(1.05)';
+      }
+    });
+    
+    slideshowContainer.addEventListener('mouseleave', () => {
+      // Remove zoom effect
+      const activeSlide = document.querySelector('.mySlides.active');
+      if (activeSlide) {
+        activeSlide.querySelector('img').style.transform = 'scale(1)';
+      }
+      slideInterval = setInterval(function() {
+        plusSlides(1);
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>

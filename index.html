@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASIA COTTON | Premium Home Textiles Since 1997</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="data:,">
+    <style>
+        :root {
+            --primary: #425260;
+            --secondary: #3b444c;
+            --dark-accent: #3a4346;
+            --light-bg: #e6e6e4;
+            --off-white: #ebebe9;
+            --light-gray: #c9c8c5;
+            --medium-gray: #b8b8b6;
+            --accent: #2d3946;
+            --text-dark: #2a2a2a;
+            --black: #000000;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+
+        main {
+            flex: 1;
+        }
+        
+        /* ======= Navigation ======= */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 1rem 2rem;
+            background: white; /* White background */
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #2d3946; /* Dark text for contrast */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2d3946;
+        }
+
+        nav a.active {
+            color: #2d3946;
+        }
+
+        nav a.active::after, nav a:hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #2d3946;
+            animation: underline 0.3s ease forwards;
+        }
+
+        @keyframes underline {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .logo {
+            height: 120px;
+            width: auto;
+            margin-right: 2rem;
+             transition: all 0.3s ease;
+        }
+         /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .logo {
+            height: 100px;
+            margin-right: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .logo {
+            height: 90px;
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .logo {
+            height: 80px;
+        }
+    }
+        /* ======= Header Slideshow ======= */
+        .header-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: fade 30s infinite; /* Increased duration for 6 slides */
+        }
+
+        /* Updated animation delays for 6 slides */
+        .slide:nth-child(1) { animation-delay: 0s; opacity: 1; }
+        .slide:nth-child(2) { animation-delay: 5s; }
+        .slide:nth-child(3) { animation-delay: 10s; }
+        .slide:nth-child(4) { animation-delay: 15s; }
+        .slide:nth-child(5) { animation-delay: 20s; }
+        .slide:nth-child(6) { animation-delay: 25s; }
+
+        @keyframes fade {
+            0% { opacity: 0; }
+            3.33% { opacity: 1; } /* Adjusted timing for 6 slides */
+            16.67% { opacity: 1; } /* Each image stays visible for ~5 seconds */
+            20% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            color: white;
+            margin-top: 0;
+        }
+
+        .text-container {
+            padding: 3rem;
+            border-radius: 10px;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            margin: auto;
+            position: relative;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* Company Highlights Section */
+        .highlights {
+            padding: var(--space-xl) 5% 0;
+         
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: var(--space-sm);
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .highlight-card {
+            background-color: var(--light-bg);
+            padding: var(--space-lg);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .highlight-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .highlight-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            color: white;
+            font-size: 1.8rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .highlight-card:hover .highlight-icon {
+            background-color: var(--accent);
+        }
+        
+        .highlight-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+            color: var(--secondary);
+            transition: color 0.3s ease;
+        }
+        
+        .highlight-card:hover h3 {
+            color: var(--primary);
+        }
+        
+        .highlight-card p {
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background-color:#44535e;
+            color: white;
+            padding: var(--space-xl) 5%;
+            text-align: center;
+            margin-top: var(--space-xl); /* Added space between highlights and stats */
+        }
+        
+        .stats-container {
+            max-width: 1000px; /* Reduced width */
+            margin: 0 auto;
+        }
+        .section-title {
+             color: white;
+             text-align: center;
+        }
+        .statsection-title h2 {
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: var(--space-sm);
+            font-weight: 700;
+        }
+        
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Contact CTA Section */
+      .contact-cta {
+    position: relative; /* Required for pseudo-element positioning */
+    padding: var(--space-xl) 5%;
+    text-align: center;
+    color: #fff; /* Ensure text is readable (adjust if needed) */
+    z-index: 1; /* Ensures text stays above the overlay */
+}
+
+.contact-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('product-Imgaes/Swaddle\ 6.jpg') 
+        center / cover no-repeat;
+    opacity: 0.2; /* Adjust transparency (0.5 = 50%) */
+    z-index: -1; /* Places the image behind the content */
+}
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        
+        .contact-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+            color: var(--secondary);
+        }
+        
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-xl);
+            color: var(--text-dark);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: transparent;
+            color: var(--accent);
+        }
+        
+        /* Footer - Made more compact */
+        footer {
+            background-color: #425260;
+            color: white;
+            padding: var(--space-md) 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            text-align: center;
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            gap: var(--space-xs);
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-sm);
+            position: relative;
+            padding-bottom: var(--space-xs);
+            text-align: center;
+        }
+        
+        .footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;           /* Start from center */
+    transform: translateX(-50%); /* Shift back half the width */
+    width: 40px;         /* Keep underline width */
+    height: 2px;
+    background-color: var(--accent);
+}
+        
+        .footer-column p, .footer-column a {
+            color: var(--light-gray);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .footer-column a {
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            margin-top: var(--space-lg);
+            padding-top: var(--space-sm);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--light-gray);
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .highlight-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-cta h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-cta h2 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-cta p {
+                font-size: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            nav {
+                padding: 0.5rem;
+            }
+            
+            .nav-links {
+                gap: 0.5rem;
+            }
+            
+            nav a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .text-container {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="logo.png" alt="Asia Cotton Logo" class="logo">
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="products.html">Products</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="sustainability.html">Sustainability</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HEADER WITH BACKGROUND IMAGE -->
+        <div class="header-container">
+            <div class="header-bg slideshow">
+                <div class="slide" style="background-image: url('product-Imgaes/outdoor-cushion1.jpg');"></div>
+                <div class="slide" style="background-image: url('product-Imgaes/Table\ Runner\ 2.jpg');"></div>
+                <div class="slide" style="background-image: url('product-Imgaes/Table\ Coth\ 2.jpg');"></div>
+                <div class="slide" style="background-image: url('product-Imgaes/Swaddle\ 6.jpg');"></div>
+                <!-- Added two more slides -->
+                <div class="slide" style="background-image: url('product-Imgaes/Bedding\ 6.jpg');"></div>
+                <div class="slide" style="background-image: url('product-Imgaes/Bedding\ 1.jpg');"></div>
+            </div>
+        </div>
+
+
+        <!-- Company Highlights -->
+        <section class="highlights">
+            <div class="section-title">
+                <h2>Our Textile Legacy</h2>
+            </div>
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Our Story</h3>
+                    <p>Founded in 1997 in Karur, the textile hub of South India, we've grown from a small workshop to a globally recognized brand through dedication to quality and innovation.</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Our Factory</h3>
+                    <p>Our 50,000 sq ft state-of-the-art facility combines advanced technology with skilled craftsmanship to produce premium textiles that meet international standards.</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Connect With Us</h3>
+                    <p>Located in the heart of Karur's textile district, we welcome partners and clients to experience our operations firsthand and discuss collaborations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="stats-container">
+                <div class="statsection-title">
+                    <h2>Our Textile Journey in Numbers</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>25+</h3>
+                        <p>Years of Excellence</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>500+</h3>
+                        <p>Skilled Artisans</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50K</h3>
+                        <p>Sq Ft Production Facility</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA Section -->
+        <section class="contact-cta">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Space?</h2>
+                <p>Seeking premium home textiles in bulk? We specialize in high-quality home products. Visit our Karur facility or contact us today for bulk orders. 
+                    Let's create success together!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Delivering Excellence Since 1997</h3>
+                <p>9/236,237,NH-44, Kakkavadi pirivu,<br>Thalapatti village,Karur,TamilNadu-639003<br>India</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>CONTACT US</h3>
+                <p>
+                    <a href="tel:+914324235518">+91 4324 235518</a><br>
+                    <a href="mailto:info@asiacotton.in">info@asiacotton.in</a><br>
+                    Mon-Fri: 9:00 AM – 5:00 PM
+                </p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>QUICK LINKS</h3>
+                <p>
+                    <a href="about.html">About Us</a><br>
+                    <a href="products.html">Our Products</a><br>
+                    <a href="sustainability.html">Sustainability</a><br>
+                    <a href="certifications.html">Certificcations</a><br>
+                    <a href="contact.html">Contact</a>
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 ASIA COTTON. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set active navigation link based on current page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get current page URL
+            const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+            
+            // Find all navigation links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            // Set active class to the current page link
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+                
+                // Add click event to update active state
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Animation for highlight cards
+            const highlightCards = document.querySelectorAll('.highlight-card');
+            
+            const animateOnScroll = () => {
+                highlightCards.forEach((card, index) => {
+                    const rect = card.getBoundingClientRect().top;
+                    const trigger = window.innerHeight / 1.3;
+                    if (rect < trigger) {
+                        card.style.transitionDelay = `${index * 0.1}s`;
+                        card.classList.add('visible');
+                    }
+                });
+            };
+
+            // Initialize all cards as invisible
+            highlightCards.forEach(card => {
+                card.style.transition = 'all 0.6s ease-out';
+            });
+
+            // Run once on load and then on scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
